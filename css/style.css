@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Telugu&display=swap');
+
+@font-face {
+    font-family: fahadFont;
+    src: url("./FontsFree-Net-Circular-Std-Book.ttf");
+}
+
+body {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    font-family: 'fahadFont', sans-serif;
+    font-weight: 400;
+}
+
+.leftSideHeading {
+    font-family: 'fahadFont', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.tableTextTotalMonthly {
+    font-family: 'fahadFont', sans-serif;
+    font-size: medium !important;
+    font-weight: bolder !important;
+}
+
+.tableNum {
+    font-size: 18px;
+    font-family: 'fahadFont', sans-serif;
+    font-weight: 400;
+    padding: 0.75rem;
+    vertical-align: top;
+}
+.form-control{
+    padding-left: 25px;
+}
+.optionalHeading{
+    color: #36755d;
+}
+
+.tableText {
+    color: #000000;
+    font-weight: light;
+}
+
+.mainHeading {
+    font-family: 'Tiro Telugu', sans-serif;
+    color: #00548A;
+}
+
+.rightMenuHeading {
+    border-bottom: 4px solid #28558a;
+    display: inline-block;
+    margin: 4px 0px 0px 4px;
+    padding: 0px 10px 10px;
+    cursor: pointer;
+}
+
+.tableText {
+    font-size: smaller;
+}
+
+
+tr {
+    border-bottom: 1px solid black;
+}
+
+.icon {
+    top: 50%;
+    left: 2%;
+    transform: translate(0, -50%);
+}
+
+.icon2 {
+    right: 2%;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: black;
+}
+
+.form-control:is(:focus, :hover, :active) {
+    box-shadow: none;
+}
+
+.form-control {
+    border-radius: 4px !important;
+    border: 1px solid #515260;
+    height: 3rem;
+    color: #151515;
+}
+
+.form-control:focus {
+    background-color: #E5EEFF;
+    border: 2px solid #3357FF;
+}
+
+.text-info {
+    color: cornflowerblue !important;
+    font-size: 1.1rem !important;
+}
+
+.collapseText {
+    font-family: 'fahadFont', sans-serif;
+    font-weight: bolder;
+    font-size: normal;
+    margin-bottom: 12px;
+}
+
+.downPaymentInput1 {
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+    width: 35%;
+    border: 1px solid #515260;
+}
+.downPaymentInput:focus {
+    background-color: #E5EEFF !important;
+    outline: 2px solid blue !important;
+    border:none;
+
+}
+.downPaymentInput1:focus {
+    background-color: #E5EEFF !important;
+    outline: 2px solid blue !important;
+    border:none;
+}
+
+@media only screen and (max-width:500px) {
+    .rightMenuSection {
+        display: block !important;
+    }
+
+    .pie {
+        text-align: center;
+    }
+
+}
+
+.downPaymentInput {
+    border: 1px solid #515260;
+    border-right: none;
+    border-radius: 4px;
+    height: 3rem;
+    width: 65%;
+}
+
+/* Amortization */
+.amortizationResultItems{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    }
+    .amortizationResultValues{
+        color: #28558A;
+        font-weight: bold;
+    }
+    .optionalMenu{
+        background-color: #F3F4F8;
+    }
+    .optionalForm{
+        padding: 4% 4%;
+    }
+    .additionalPayment{
+        padding-right: 5%;
+    }
+    .amortizationBreakDown{
+        color: #212529;
+    }
+ 
+    .amortizationTable thead tr{
+        border-bottom: 2px solid #C7C9CA; 
+    }
+    .amortizationTable tbody tr{
+        border-bottom: 1px solid #C7C9CA; 
+    }
+
+   

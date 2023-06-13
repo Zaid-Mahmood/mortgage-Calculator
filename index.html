@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Calculator-replica</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-12 mb-2">
+        <div class="row mt-3">
+          <h1 class="mainHeading fw-bold">Mortgage Calculator</h1>
+          <!-- Left Section Start -->
+          <div class="col-12 col-lg-3">
+            <form>
+              <!-- Home Price -->
+              <p class="leftSideHeading mb-2">Home Price</p>
+              <div class="input-group mb-3 position-relative">
+                <input id="homePrice" class="form-control" type="text" aria-label="default input example" value="250000"
+                  onchange="monthlyPayment()" onblur="updateChart()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-currency-dollar icon position-absolute" viewBox="0 0 16 16">
+                  <path
+                    d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                </svg>
+              </div>
+
+              <!-- Down Payment -->
+              <p class="leftSideHeading mb-2">Down Payment <span class="float-end text-info" data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Down payment: Portion of the sale price of a home that is not financed. Your down payment amount can affect the interest rate you get, as lenders typically offer lower rates for borrowers who make larger down payments.">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                  </svg></span></p>
+
+
+              <div class="input-group mb-3 position relative">
+                <input id="downPayment" class="downPaymentInput ps-4 py-2" type="text"
+                  aria-label="default input example" value="12500" onchange="downPaymentChange()"
+                  onblur="updateChart()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-currency-dollar icon position-absolute" viewBox="0 0 16 16">
+                  <path
+                    d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
+                </svg>
+                <input id="downPaymentPercentage" type="text" class="downPaymentInput1 px-2 py-2" aria-label="Server"
+                  value="5" onchange="monthlyPayment()" onblur="updateChart()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-percent position-absolute icon2" viewBox="0 0 16 16">
+                  <path
+                    d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                </svg>
+              </div>
+
+              <!-- Loan Term -->
+              <p class="leftSideHeading mb-2">Loan Term <span class="float-end text-info" data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="Loan term: The amount of time or number of years that you will have to repay a loan. Longer term mortages can make your monthly payment amount smaller than shorter term loans by stretching out your payments over more years.">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                  </svg></span>
+              <div class="input-group mb-3 position-relative">
+                <input id="numberOfPayments" class="form-control w-75 px-2 py-2" type="text"
+                  aria-label="default input example" value="30" onchange="monthlyPayment()" onblur="updateChart()">
+                <p class="position-absolute icon2">years</p>
+              </div>
+
+              <!-- Interest Rate -->
+              <p class="leftSideHeading mb-2">Interest Rate <span class="float-end text-info" data-bs-toggle="tooltip"
+                  data-bs-placement="bottom"
+                  title="Interest rate: Amount you’ll pay each year to borrow the money for your loan, expressed as a percentage.">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                      d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                  </svg></span></p>
+              <div class="input-group mb-3 position-relative">
+                <input id="monthlyInterest" type="text" class="form-control px-2 py-2" aria-label="Server" value="3"
+                  onchange="monthlyPayment()" onblur="updateChart()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-percent position-absolute icon2" viewBox="0 0 16 16">
+                  <path
+                    d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                </svg>
+              </div>
+            </form>
+            <!-- Collapse Menu -->
+            <h5 class="optionalHeading text-center fw-medium" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+              Optional: Taxes, insurance, HOA fees v
+            </h5>
+            <div style="min-height: 120px;">
+              <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                <div id="advance-options" style="width: 100%;">
+
+                  <!-- Zip Code -->
+                  <label for="zip" class="collapseText">Zip Code</label>
+                  <div class="input-icon">
+                    <input class="form-control" id="zip" name="zip" type="text" value="90210">
+                  </div>
+                  <br>
+
+                  <!-- Credit Score   -->
+                  <label for="creditScore" class="collapseText">Credit Score</label>
+                  <select class="form-control" id="creditScore" name="creditScore" fdprocessedid="yn9z1y">
+                    <img src="../mortgage Calculator/css/down-chevron.png" alt="">
+                    <option disabled="disabled">Select a credit score range</option>
+                    <option value="740">
+                      740+
+                    </option>
+                    <option value="739">
+                      720 - 739
+                    </option>
+                    <option value="719">
+                      700 - 719
+                    </option>
+                    <option value="699">
+                      680 - 699
+                    </option>
+                    <option value="679">
+                      660 - 679
+                    </option>
+                  </select>
+                  <br>
+
+                  <!-- Property tax per month -->
+                  <label for="propertyTax" class="collapseText">Property tax per month</label>
+                  <span class="float-end text-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Property tax: Any tax on real estate or certain other forms of property.">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-info-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                        d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg></span>
+
+                  <div class="input-icon">
+                    <input class="form-control" id="propertyTax" name="homeownerInsurance" type="text" value="100"
+                      onchange="monthlyPayment()" onblur="updateChart()">
+                  </div>
+                  <br>
+
+                  <!-- Homeowner's insurance per month -->
+
+                  <label for="Homeowner's insurance/mon" class="collapseText">Homeowner's insurance/mon</label>
+                  <span class="float-end text-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Homeowners insurance: Financial protection that you purchase from an insurance provider. It helps pay for losses if a covered disaster or other damaging event affects your home.">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-info-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                        d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg></span>
+
+                  <div class="input-icon">
+                    <input class="form-control" id="homeownerInsurance" name="homeowner" type="text" value="100"
+                      onchange="monthlyPayment()" onblur="updateChart()">
+                  </div>
+                  <br>
+
+                  <!-- PMI per month -->
+                  <label for="PMI" class="collapseText">PMI per month</label>
+                  <span class="float-end text-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Private mortgage insurance (PMI): Insurance policy that compensates lenders for losses from a mortgage loan default.">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-info-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                        d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg></span>
+
+                  <div class="input-icon">
+                    <input class="form-control" id="PMI" name="PMI" type="text" value="0" onchange="monthlyPayment()"
+                      onblur="updateChart()">
+                  </div>
+                  <br>
+
+                  <!-- HOA fee per month -->
+                  <label for="HOA" class="collapseText">HOA fee per month</label>
+                  <span class="float-end text-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Homeowner’s association (HOA) fee:  Monthly or quarterly fee assessed by the HOA to pay for the services that it provides. ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-info-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                        d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                    </svg></span>
+
+                  <div class="input-icon">
+                    <input class="form-control" id="HOA" name="HOA" type="text" value="0" onchange="monthlyPayment()"
+                      onblur="updateChart()">
+                  </div>
+                  <br>
+                </div>
+                <!-- </div> -->
+              </div>
+            </div>
+          </div>
+          <!-- Left Section End -->
+
+
+          <!-- Right Section One Start-->
+          <div class="col-12 col-lg-9">
+            <!-- Right Section Main Page -->
+
+            <!-- Right Menu Heading Section -->
+
+            <h6 id="paymentBreakDown" class="rightMenuHeading" onclick="rightPageChange(this.id)">Payment Breakdown</h6>
+
+
+            <h6 id="amortization" class="rightMenuHeading" onclick="rightPageChange(this.id)">Amortization</h6>
+
+            <!-- Page Breakdown Start-->
+            <div id="rightPageOne" class="bg-white border rounded-2 p-4 shadow">
+              <h2 class="monthlybreakdown fw-bold">Monthly payment breakdown</h2>
+
+              <!-- Right Menu Main Section -->
+              <div class="rightMenuSection d-flex justify-content-around">
+                <!-- Pie chart -->
+                <div class="pie">
+                  <canvas id="pieChart">
+
+                  </canvas>
+                </div>
+
+                <!-- Table Menu -->
+                <div class="w-50">
+                  <table class="table w-100">
+                    <tbody>
+                      <tr>
+                        <td class="tableText">Principal & interest</td>
+                        <td id="principalInterest" class="tableNum">$1001.31</td>
+                      </tr>
+                      <tr>
+                        <td class="tableText">Property tax</td>
+                        <td id="propertyTaxResult" class="tableNum">$100.00</td>
+                      </tr>
+                      <tr>
+                        <td class="tableText">Homeowner's insurance</td>
+                        <td id="homeOwnerResult" class="tableNum">$100.00</td>
+                      </tr>
+                      <tr>
+                        <td class="tableText">PMI</td>
+                        <td id="pmiResult" class="tableNum">$0.00</td>
+
+                      </tr>
+                      <tr>
+                        <td class="tableText">HOA fees</td>
+                        <td id="hoaResult" class="tableNum">$0.00</td>
+
+                      </tr>
+                      <tr class="tableResult border-white">
+                        <td class="tableTextTotalMonthly  ps-4">Total Monthly Payment</td>
+                        <td id="totalMonthlyPaymentResult" class="tableNum">$1,201</td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
+            </div>
+            <!-- Page Breakdown End-->
+
+            <!-- Amortization Page Start-->
+            <div id="rightPageTwo" class="bg-white border rounded-2 p-4 shadow d-none">
+              <h2 class="monthlybreakdown fw-bold">Amortization for mortgage loan</h2>
+              <small>
+                <p class="mb-0">Amortization is paying off debt over time in equal installments. As the term of your
+                  mortgage loan progresses, a larger share of your payment goes toward paying down the principal until
+                  the loan is paid in full at the end of your term.</p>
+              </small>
+
+              <div class="row text-center mt-2 mb-4 py-1 amortizationResultItems">
+                <div class="col">
+                  <p class="fw-normal mb-0">Loan amount</p>
+                  <h3 id="loanAmount" class="amortizationResultValues">$237,500</h3>
+
+                </div>
+                <div class="col">
+                  <p class="fw-normal mb-0">Total interest paid</p>
+                  <h3 id = "totalInterestPaid" class="amortizationResultValues">$122,971</h3>
+
+                </div>
+
+                <div class="col">
+                  <p class="fw-normal mb-0">Total cost of loan</p>
+                  <h3 id = "totalCostOfLoan"  class="amortizationResultValues">$360,471</h3>
+
+                </div>
+
+                <div class="col">
+                  <p class="fw-normal mb-0">Payoff date</p>
+                  <h3 id = "payOffDate" class="amortizationResultValues">Jun-2053</h3>
+
+                </div>
+              </div>
+              <!-- Right Menu Main Section -->
+
+
+              <!-- Amortization optional Menu -->
+              <div class="row">
+                <div class="col-md-7">line Chart</div>
+
+                <div class="col-md-5">
+                  <div class="optionalMenu border rounded-3 pt-2 px-2">
+
+                    <!-- Optional: Make extra payments -->
+                    <p class="fw-bold fs-6 mb-1">Optional: Make extra payments</p>
+                    <p class="w-100"><small> By adding extra payments, you can pay off your loan and save on interest.
+                      </small></p>
+
+                    <!-- Additional amount to monthly payment -->
+                    <p class="fw-bold fs-6 mb-1">Additional amount to monthly payment</p>
+                    <div class="mb-3">
+                      <input type="email" class="form-control optionalForm" id="exampleFormControlInput1"
+                        placeholder="name@example.com" value="$0">
+                    </div>
+
+                    <!-- Additional yearly payment -->
+                    <p class="fw-bold fs-6 mb-1">Additional yearly payment</p>
+                    <div class="mb-3 row">
+                      <div class="col-md-7">
+                        <input type="email" class="w-100 form-control optionalForm" id="exampleFormControlInput1"
+                          placeholder="name@example.com" value="$0">
+                      </div>
+                      <div class="col-md-5">
+                        <select class="additionalPayment form-control w-100" name="additionalYearlyAmountMonth">
+                          <option value="Jan" selected="">JAN</option>
+                          <option value="Feb">FEB</option>
+                          <option value="Mar">MAR</option>
+                          <option value="Apr">APR</option>
+                          <option value="May">MAY</option>
+                          <option value="Jun">JUN</option>
+                          <option value="Jul">JUL</option>
+                          <option value="Aug">AUG</option>
+                          <option value="Sep">SEPT</option>
+                          <option value="Oct">OCT</option>
+                          <option value="Nov">NOV</option>
+                          <option value="Dec">DEC</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- One-time additional payment on -->
+                    <p class="fw-bold fs-6 mb-1">One-time additional payment on</p>
+                    <div class="mb-3 row">
+                      <div class="col-md-7">
+                        <input type="email" class="w-100 form-control optionalForm" id="exampleFormControlInput1"
+                          placeholder="name@example.com" value="$0">
+                      </div>
+                      <div class="col-md-5">
+                        <select class="additionalPayment form-control w-100" name="additionalYearlyAmountMonth">
+                          <option value="Jan" selected="">JAN</option>
+                          <option value="Feb">FEB</option>
+                          <option value="Mar">MAR</option>
+                          <option value="Apr">APR</option>
+                          <option value="May">MAY</option>
+                          <option value="Jun">JUN</option>
+                          <option value="Jul">JUL</option>
+                          <option value="Aug">AUG</option>
+                          <option value="Sep">SEPT</option>
+                          <option value="Oct">OCT</option>
+                          <option value="Nov">NOV</option>
+                          <option value="Dec">DEC</option>
+                        </select>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <!-- hr tag -->
+              <hr class="w-100">
+
+              <!-- Amortization schedule breakdown -->
+              <h1 class="fw-bold amortizationBreakDown">Amortization schedule breakdown</h1>
+              <p>This table lists how much principal and interest are paid in each scheduled mortgage payment.</p>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <p class="fw-bold mb-2">First Payment</p>
+                  <input type="month" class="form-control">
+                </div>
+
+                <div class="col-md-1 mt-4 pt-2">
+                  <img class="arrowImageClass img-fluid w-75" src="./css/arrow.svg" alt="">
+                </div>
+                <div class="col-md-3">
+                  <p class="fw-bold mb-2">Last Payment</p>
+                  <h2 class="fw-bold">Jun-2053</h2>
+                </div>
+              </div>
+              <hr>
+
+              <div class="table-responsive">
+                  <table class="table amortizationTable text-center">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Principal</th>
+                        <th scope="col">Interest</th>
+                        <th scope="col">Remaining Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody id ="insertValues">
+                      <!-- <tr>
+                        <td>Jul-2023</td>
+                        <td id = "principalTable">$407.56</td>
+                        <td id = "monthlyInterestTable">$593.75</td>
+                        <td id = "remainingBalance">$237,092.44</td>
+                      </tr>
+                      <tr>
+                        <td>Aug-2023</td>
+                        <td>$408.58 </td>
+                        <td>$592.73 </td>
+                        <td>$236,683.86</td>
+                      </tr>
+                      <tr>
+                        <td>Sep-2023</td>
+                        <td>$409.60</td>
+                        <td>$591.71</td>
+                        <td>$236,274.26</td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table of Amortization schedule breakdown -->
+
+
+        </div>
+        <!-- Amortization Page End-->
+
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+  </script>
+
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
