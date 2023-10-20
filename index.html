@@ -152,7 +152,7 @@
                     </svg></span>
 
                   <div class="input-icon">
-                    <input class="form-control" id="propertyTax" name="homeownerInsurance" type="text" value="100"
+                    <input class="form-control" id="propertyTax" name="propertyTax" type="text" value="100"
                       onchange="monthlyPayment()" onblur="updateChart()">
                   </div>
                   <br>
@@ -222,10 +222,9 @@
 
             <!-- Right Menu Heading Section -->
 
-            <h6 id="paymentBreakDown" class="rightMenuHeading" onclick="rightPageChange(this.id)">Payment Breakdown</h6>
+            <h6 id="paymentBreakDown" class="rightMenuHeading" onclick="rightPageChange()">Payment Breakdown</h6>
 
 
-            <h6 id="amortization" class="rightMenuHeading" onclick="rightPageChange(this.id)">Amortization</h6>
 
             <!-- Page Breakdown Start-->
             <div id="rightPageOne" class="bg-white border rounded-2 p-4 shadow">
@@ -281,170 +280,7 @@
             <!-- Page Breakdown End-->
 
             <!-- Amortization Page Start-->
-            <div id="rightPageTwo" class="bg-white border rounded-2 p-4 shadow d-none">
-              <h2 class="monthlybreakdown fw-bold">Amortization for mortgage loan</h2>
-              <small>
-                <p class="mb-0">Amortization is paying off debt over time in equal installments. As the term of your
-                  mortgage loan progresses, a larger share of your payment goes toward paying down the principal until
-                  the loan is paid in full at the end of your term.</p>
-              </small>
 
-              <div class="row text-center mt-2 mb-4 py-1 amortizationResultItems">
-                <div class="col">
-                  <p class="fw-normal mb-0">Loan amount</p>
-                  <h3 id="loanAmount" class="amortizationResultValues">$237,500</h3>
-
-                </div>
-                <div class="col">
-                  <p class="fw-normal mb-0">Total interest paid</p>
-                  <h3 id = "totalInterestPaid" class="amortizationResultValues">$122,971</h3>
-
-                </div>
-
-                <div class="col">
-                  <p class="fw-normal mb-0">Total cost of loan</p>
-                  <h3 id = "totalCostOfLoan"  class="amortizationResultValues">$360,471</h3>
-
-                </div>
-
-                <div class="col">
-                  <p class="fw-normal mb-0">Payoff date</p>
-                  <h3 id = "payOffDate" class="amortizationResultValues">Jun-2053</h3>
-
-                </div>
-              </div>
-              <!-- Right Menu Main Section -->
-
-
-              <!-- Amortization optional Menu -->
-              <div class="row">
-                <div class="col-md-7">line Chart</div>
-
-                <div class="col-md-5">
-                  <div class="optionalMenu border rounded-3 pt-2 px-2">
-
-                    <!-- Optional: Make extra payments -->
-                    <p class="fw-bold fs-6 mb-1">Optional: Make extra payments</p>
-                    <p class="w-100"><small> By adding extra payments, you can pay off your loan and save on interest.
-                      </small></p>
-
-                    <!-- Additional amount to monthly payment -->
-                    <p class="fw-bold fs-6 mb-1">Additional amount to monthly payment</p>
-                    <div class="mb-3">
-                      <input type="email" class="form-control optionalForm" id="exampleFormControlInput1"
-                        placeholder="name@example.com" value="$0">
-                    </div>
-
-                    <!-- Additional yearly payment -->
-                    <p class="fw-bold fs-6 mb-1">Additional yearly payment</p>
-                    <div class="mb-3 row">
-                      <div class="col-md-7">
-                        <input type="email" class="w-100 form-control optionalForm" id="exampleFormControlInput1"
-                          placeholder="name@example.com" value="$0">
-                      </div>
-                      <div class="col-md-5">
-                        <select class="additionalPayment form-control w-100" name="additionalYearlyAmountMonth">
-                          <option value="Jan" selected="">JAN</option>
-                          <option value="Feb">FEB</option>
-                          <option value="Mar">MAR</option>
-                          <option value="Apr">APR</option>
-                          <option value="May">MAY</option>
-                          <option value="Jun">JUN</option>
-                          <option value="Jul">JUL</option>
-                          <option value="Aug">AUG</option>
-                          <option value="Sep">SEPT</option>
-                          <option value="Oct">OCT</option>
-                          <option value="Nov">NOV</option>
-                          <option value="Dec">DEC</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <!-- One-time additional payment on -->
-                    <p class="fw-bold fs-6 mb-1">One-time additional payment on</p>
-                    <div class="mb-3 row">
-                      <div class="col-md-7">
-                        <input type="email" class="w-100 form-control optionalForm" id="exampleFormControlInput1"
-                          placeholder="name@example.com" value="$0">
-                      </div>
-                      <div class="col-md-5">
-                        <select class="additionalPayment form-control w-100" name="additionalYearlyAmountMonth">
-                          <option value="Jan" selected="">JAN</option>
-                          <option value="Feb">FEB</option>
-                          <option value="Mar">MAR</option>
-                          <option value="Apr">APR</option>
-                          <option value="May">MAY</option>
-                          <option value="Jun">JUN</option>
-                          <option value="Jul">JUL</option>
-                          <option value="Aug">AUG</option>
-                          <option value="Sep">SEPT</option>
-                          <option value="Oct">OCT</option>
-                          <option value="Nov">NOV</option>
-                          <option value="Dec">DEC</option>
-                        </select>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-              <!-- hr tag -->
-              <hr class="w-100">
-
-              <!-- Amortization schedule breakdown -->
-              <h1 class="fw-bold amortizationBreakDown">Amortization schedule breakdown</h1>
-              <p>This table lists how much principal and interest are paid in each scheduled mortgage payment.</p>
-
-              <div class="row">
-                <div class="col-md-3">
-                  <p class="fw-bold mb-2">First Payment</p>
-                  <input type="month" class="form-control">
-                </div>
-
-                <div class="col-md-1 mt-4 pt-2">
-                  <img class="arrowImageClass img-fluid w-75" src="./css/arrow.svg" alt="">
-                </div>
-                <div class="col-md-3">
-                  <p class="fw-bold mb-2">Last Payment</p>
-                  <h2 class="fw-bold">Jun-2053</h2>
-                </div>
-              </div>
-              <hr>
-
-              <div class="table-responsive">
-                  <table class="table amortizationTable text-center">
-                    <thead>
-                      <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Principal</th>
-                        <th scope="col">Interest</th>
-                        <th scope="col">Remaining Balance</th>
-                      </tr>
-                    </thead>
-                    <tbody id ="insertValues">
-                      <!-- <tr>
-                        <td>Jul-2023</td>
-                        <td id = "principalTable">$407.56</td>
-                        <td id = "monthlyInterestTable">$593.75</td>
-                        <td id = "remainingBalance">$237,092.44</td>
-                      </tr>
-                      <tr>
-                        <td>Aug-2023</td>
-                        <td>$408.58 </td>
-                        <td>$592.73 </td>
-                        <td>$236,683.86</td>
-                      </tr>
-                      <tr>
-                        <td>Sep-2023</td>
-                        <td>$409.60</td>
-                        <td>$591.71</td>
-                        <td>$236,274.26</td>
-                      </tr> -->
-                    </tbody>
-                  </table>
-              </div>
-            </div>
           </div>
 
           <!-- Table of Amortization schedule breakdown -->
@@ -457,9 +293,7 @@
     </div>
 
   </div>
-  </div>
-  </div>
-  </div>
+  
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
